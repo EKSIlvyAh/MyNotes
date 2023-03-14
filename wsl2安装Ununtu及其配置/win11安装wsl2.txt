@@ -1,0 +1,98 @@
+---这里我安装的是Ubuntu-20.04.5 LTS---
+
+#配置支持环境
+
+首先到 设置>可选功能>更多Windows功能
+
+在弹出的面板中勾选
+
+	* 适用于Linux的windows子系统
+	* 虚拟机平台
+
+点击确定
+
+然后要进bios把cpu虚拟化启用（由于我的电脑默认启用，我就没进行这一步）
+
+#下载Ubuntu
+
+（后续安装我都是参考下面这个专栏的步骤
+--https://www.bilibili.com/read/cv16825907）
+
+在Microsoft Store下载依次下载
+
+Windows Subsystem for linux | Ubuntu-20.04.5 LTS
+
+之后就完成了（此时挂载的磁盘是C盘）
+
+#配置Ubuntu
+
+运行Ubuntu（在powershell输入 wsl也可运行）
+
+补充几个命令
+wsl -l -v	查看wsl状态
+wsl --shutdown	关机
+
+设置用户名（要小写）和密码（我设置的和qq密码一样）
+
+在终端输入命令
+
+sudo apt update	更新apt
+
+完成后，安装VSCode（我早就安装好了所以跳过这一步）
+
+启动
+
+安装remote-WSL（名字可能是WSL）
+
+点击左下角><符号打开远程连接
+
+打开后会自动和Ubuntu建立连接，然后弹出新的VSCode窗口
+
+切入新打开的窗口
+
+点击打开文件夹
+
+打开wsl的根目录 ‘/’（方便管理文件）
+
+然后完成
+
+要想配置anaconda可以进上面的专栏链接看
+
+#迁移Ubuntu到其他盘（这里我以D盘示例）
+
+参考博客
+-https://blog.csdn.net/vc66vcc/article/details/128152148
+-https://blog.csdn.net/m0_37605642/article/details/127812965
+
+由于Microso Store默认安装Ubuntu到C盘，在配置一些环境后很容易导致C盘爆满，重装又会丢失之前的wsl数据，所以建议迁移到其他盘
+
+首先打开powershell
+
+依次执行如下命令
+
+wsl --shutdown	关闭wsl
+
+wsl -l -i	查看wsl信息，确保已经关闭了wsl，如果没有，重复上一步
+
+mkdir E:/UbuntuWSL	新建UbuntuWSL文件夹，记得回车两次，也可以打开文件管理器创建
+
+wsl --export Ubuntu-20.04 D:\wsl\ubuntu20.04.tar	导出Ubuntu
+
+wsl --unregister Ubuntu-20.04	注销WSL
+
+wsl --import Ubuntu-20.04 D:\wsl D:\wsl\ubuntu20.04.tar --version 2	在导导入WSL系统镜像，执行不成功的话就去掉--version 2，如果WSL版本不是2，才可能出现这个问题
+
+导出后可能出现丢失原来终端配置的情况，可之后重新美化
+
+【注意】
+        命令格式：wsl --import <DistributionName>  <安装位置>  <tar文件名>
+       导入时改变DistributionName(如Ubuntu-20.04改成Ubuntu)，会导致WSL不可用。
+
+
+
+
+
+
+
+
+

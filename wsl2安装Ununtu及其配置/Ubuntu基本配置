@@ -1,0 +1,37 @@
+# Ubuntu基本配置
+
+## 安装fish(friendly interactive shell)
+
+    sudo apt install fish
+安装fish就够了，不需要再配置zsh，安装简单，开箱即用
+
+然后切换默认shell为fish
+```
+which fish
+# 查看shell的运行路径
+
+sudo chsh -s /usr/bin/fish
+# 切换shell为fish（注意路径为正确的路径）
+```
+
+## 设置系统语言为中文
+[参考博客: https://blog.csdn.net/acooler15/article/details/111681560](https://blog.csdn.net/acooler15/article/details/111681560)
+
+或者依次输入以下命令
+```
+
+sudo apt install language-pack-zh-hans
+# 安装中文语言包
+
+
+sudo dpkg-reconfigure locales
+# 运行dpkg-reconfigure locales
+# 选择en_US.UTF-8和zh_CN.UTF-8, 选择zh_CN.UTF-8为默认语言
+```
+然后到这就差不多了，如果还想配置字体，可以继续去看博客
+
+再说一下dpkg-reconfigure locales的界面
+
+第一步是选择区域语言，是多选，用空格选择
+
+第二步才是选择默认语言
